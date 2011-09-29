@@ -1,0 +1,16 @@
+label {
+  display: block;
+}
+
+input, select {
+  margin-bottom: 1em;
+}
+
+input[type=submit] {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: #C84BBF;
+}

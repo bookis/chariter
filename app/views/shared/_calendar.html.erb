@@ -1,0 +1,26 @@
+<section id="calendar">
+  <div class='header'>
+    <%= link_to "<", url_for(:date => @calendar.prev_month) %>
+    <%= Date::MONTHNAMES[@calendar.date.month] %>
+    <%= link_to ">", url_for(:date => @calendar.next_month) %>
+  </div>
+  <% Date::DAYNAMES.compact.each do |dayname| %>
+    <div class='cell dayname'><%= dayname %></div>
+  <% end %>
+  <% @calendar.each do |k, v| %>
+    <div class="cell <%= v[:classes].join(' ') %>">
+      
+      <% if defined?(f) %>
+        <%= f.fields_for :tasks_attributes, :index => k do |ff| -%>
+          <%= ff.hidden_field :due_date, :value => v[:date] %>
+          <%= ff.hidden_field :add_task, :value => false, :class => 'add_task' %>
+        <% end %>
+      <% end %>
+      
+      <%= v[:day_of_month] %>
+      <% v[:objects].each do |task| %>
+        <%= link_to task.commitment.name, task %>
+      <% end %>
+    </div>
+  <% end %>
+</section>

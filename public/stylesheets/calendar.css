@@ -1,0 +1,44 @@
+#calendar {
+  height: 700px;
+  width: 85%;
+  margin: 0 auto;
+}
+
+#calendar .header {
+  height: 60px;
+  width: 100%;
+  text-align: center;
+  font-size: 240%;
+  font-weight: bold;
+}
+
+#calendar .cell {
+  display: inline-block;
+  outline: 1px solid gray;
+  margin-bottom: 4px;
+  height: 50px;
+  width: 13%;
+/*  padding: 2px;*/
+}
+
+#calendar .dayname {
+  height: 20px;
+  padding-top: 2px;
+  text-align: center;
+}
+
+#calendar .past {
+  background-color: #F6F6F6;
+}
+
+#calendar .today {
+  background: #FFE8EB;
+}
+
+
+#calendar .selected:hover {
+}
+
+#calendar .prev_month, #calendar .next_month {
+  opacity: 0.7;
+}

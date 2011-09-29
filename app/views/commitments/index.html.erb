@@ -1,0 +1,18 @@
+<h1>Commitments</h1>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% @commitments.each do |commitment| %>
+    <tr>
+      <td><%= link_to commitment.name, commitment %></td>
+      <td><%= button_to "Delete", commitment, :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+<div id='zoomable'>
+  <%= render '/shared/calendar' %>
+</div>
+
+
+<%= link_to "New Commitment", new_commitment_path %>

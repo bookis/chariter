@@ -1,0 +1,19 @@
+<% form_for @commitment do |f| -%>
+
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+  
+  <%= f.label :delay_period, "Delay Period" %>
+  <%= f.select :delay_period, options_for_select([["1 Day", '1.day'],["1 Week", '1.week']]) %>
+  
+  <%= f.label :organization_url, "Organization Url" %>
+  <%= f.text_field :organization_url %>
+  
+  <%= f.label :amount, "Donation Amount" %>
+  <%= f.text_field :amount %>
+  
+  <%= f.label :end_date, "End Date" %>
+  <%= f.date_select :end_date %>
+  
+  <%= f.submit "Submit" %>
+<% end -%>

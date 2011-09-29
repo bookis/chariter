@@ -1,0 +1,11 @@
+<section>
+  <ul>
+    <% if user_signed_in? %>
+      <li><%= link_to current_user.email, user_path(current_user) %></li>
+      <li><%= button_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+    <% else %>
+      <li><%= link_to "Sign Up", new_registration_path(User) %></li>
+      <li><%= link_to "Sign In", new_session_path(User) %></li>  
+    <% end %>
+  </ul>
+</section>
