@@ -38,6 +38,11 @@ class Calendar
       day = find(date)
       next if day.nil?
       day[:objects].blank? ? day[:objects] = [object] : day[:objects] << object
+      if object.instance_of? Task
+        day[:classes] << "pending" if object.pending?
+        day[:classes] << "failed" if object.failed?
+        day[:classes] << "succeeded" if object.succeeded?
+      end
     end
   end
   

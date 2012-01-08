@@ -1,6 +1,10 @@
 Chariter::Application.routes.draw do
   
-  resources :commitments ,:tasks
+  resources :commitments do
+    resources :tasks
+  end
+  
+  resources :tasks
 
   devise_for :users
   match '/users/:id' => 'users#show', :as => :user

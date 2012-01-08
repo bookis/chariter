@@ -3,6 +3,8 @@ require "spec_helper"
 describe Calendar do
   let(:cal) { Calendar.new("June 2011") }
   let(:skel) { cal.initialize_weeks }
+  let(:commitment) { Commitment.create(:amount => 500.00, :organization_url => "example.com", :delay_period => 7)}
+  
   it "should have a big crazy hash" do
     skel.should eq weeks_skeleton
   end
@@ -30,14 +32,14 @@ describe Calendar do
   end
   
   it "should accept a task object" do
-    task = Task.create
+    task = commitment.tasks.create(:due_date => Time.parse("June 1 2011 12pm"))
     task.update_attribute(:created_at, Time.parse("June 1 2011 12pm"))
     cal.add_objects(Task.all, 'created_at')
     cal.find('2011-06-01')[:objects].should include task
   end
   
   it "shouldn't blow up if an object isn't in the calendar" do
-    task = Task.create
+    task = commitment.tasks.create
     lambda { cal.add_objects(Task.all, 'created_at') }.should_not raise_error
   end
 end

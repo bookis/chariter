@@ -14,31 +14,30 @@ $(document).ready(function() {
   },200 )
   
   $('#new_tasks #calendar .date').click(function() {
-    $(this).toggleClass('selected')
-    $(this).find('.add_task').val(true)
+    postTask($(this))
   });
-  
-  // Make form for tasks
   
 });
 
+$(document).ajaxSend(function(e, xhr, options) {
+  var token = $("meta[name='csrf-token']").attr("content");
+  xhr.setRequestHeader("X-CSRF-Token", token);
+});
 
-
-function postTask(date) {
-  task = {due_date: date}
+function postTask(cell) {
   $.ajax({
-    url: 'tasks',
+    url: '/tasks',
     type: 'POST',
     dataType: 'json',
-    data: {task: task},
-    complete: function(xhr, textStatus) {
-      console.log('comp')
-    },
+    data: {task: {due_date: cell.data('date'), commitment_id: cell.data('commitment')}},
+    // data: {task: {due_date: cell, commitment_id: 2}},
     success: function(data, textStatus, xhr) {
-      console.log('succ')
+      cell.text(data.task.commitment.name)
+      cell.addClass('selected')
+      cell.find('.add_task').val(true)
     },
     error: function(xhr, textStatus, errorThrown) {
-      console.log('fail')
+      cell.removeClass('selected')
     }
   });
 };

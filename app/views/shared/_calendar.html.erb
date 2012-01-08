@@ -8,18 +8,15 @@
     <div class='cell dayname'><%= dayname %></div>
   <% end %>
   <% @calendar.each do |k, v| %>
-    <div class="cell <%= v[:classes].join(' ') %>">
-      
-      <% if defined?(f) %>
-        <%= f.fields_for :tasks_attributes, :index => k do |ff| -%>
-          <%= ff.hidden_field :due_date, :value => v[:date] %>
-          <%= ff.hidden_field :add_task, :value => false, :class => 'add_task' %>
-        <% end %>
-      <% end %>
-      
+    <div data-commitment=<%= @commitment.id if @commitment %> data-date=<%= v[:date] %> class="cell <%= v[:classes].join(' ') %>">
+            
       <%= v[:day_of_month] %>
-      <% v[:objects].each do |task| %>
-        <%= link_to task.commitment.name, task %>
+      <% if v[:objects].any? %>
+        <ul>
+          <% v[:objects].each do |task| %>
+            <li><%= link_to task.commitment.name, task %></li>
+          <% end %>
+        </ul>
       <% end %>
     </div>
   <% end %>

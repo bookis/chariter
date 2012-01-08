@@ -1,6 +1,3 @@
 <div id="new_tasks">
-  <% form_for @commitment do |f| -%>
-    <%= render '/shared/calendar', :f => f %>
-    <%= f.submit "Submit" %>
-  <% end -%>
+  <%= render '/shared/calendar' %>
 </div>

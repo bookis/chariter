@@ -1,7 +1,7 @@
 class CommitmentsController < ApplicationController
   def index
-    @commitments = current_user.commitments.all
-    @calendar   = Calendar.new params[:date], current_user.tasks, 'due_date'
+    @commitments = current_user.commitments
+    @calendar   = Calendar.new params[:date], current_user.tasks.includes(:commitment), 'due_date'
   end
 
   def show

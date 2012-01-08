@@ -35,10 +35,32 @@
   background: #FFE8EB;
 }
 
+#calendar .failed a {
+  color: red;
+}
+
+#calendar .succeeded a {
+  color: green;
+}
+
+#calendar .pending a {
+  color: orange;
+}
 
 #calendar .selected:hover {
 }
 
 #calendar .prev_month, #calendar .next_month {
   opacity: 0.7;
+}
+
+#calendar ul {
+  margin: 0;
+  padding: 0;
+}
+
+#calendar ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

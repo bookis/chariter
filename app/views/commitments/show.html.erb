@@ -1,3 +1,11 @@
 <h1><%= @commitment.name %></h1>
+<ul>
+  <li><%= @commitment.donation_amount.format %></li>
+  <li><%= @commitment.tasks.count %></li>
+  <li><%= @commitment.completed_tasks.count %></li>
+  <li><%= @commitment.todo_tasks.count %></li>
+  <li><%= @commitment.pending_tasks.count %></li>
+</ul>
 <%= render '/shared/calendar' %>
 
+<%= link_to "New Task", new_commitment_task_path(@commitment) %>

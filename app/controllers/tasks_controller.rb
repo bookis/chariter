@@ -3,11 +3,11 @@ class TasksController < ApplicationController
   def new
     @slug = "tasks"
     @commitment = Commitment.last
-    @calendar   = Calendar.new params[:date], current_user.tasks, 'due_date'
+    @calendar   = Calendar.new params[:date], current_user.tasks.includes(:commitment), 'due_date'
   end
   
   def create 
     @task = Task.create(params[:task])
-    respond_with @task
+    respond_with @task, :include => :commitment
   end
 end
